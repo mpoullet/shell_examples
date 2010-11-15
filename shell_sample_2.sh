@@ -2,6 +2,10 @@
 
 VERSION=1.0
 
+load_helper_functions() {
+source ${SCRIPT_HOME}/include/debug.sh
+}
+
 goto_script_home() {
 SCRIPT_HOME=$(readlink -f $(dirname $0))
 cd ${SCRIPT_HOME}
@@ -36,6 +40,9 @@ echo "-h --help : Print usage"
 main_function() {
 SCRIPT_NAME="$(basename $0)"
 goto_script_home
+load_helper_functions
+_D "SCRIPT_NAME=${SCRIPT_NAME}"
+_D "SCRIPT_HOME=${SCRIPT_HOME}"
 parse_command_line "$@"
 }
 
