@@ -8,16 +8,33 @@ cd ${SCRIPT_HOME}
 }
 
 parse_command_line() {
-while getopts "v" option ; do
+while getopts ":hv-:" option ; do
+if [ "${option}" = "-" ]; then
+case ${OPTARG} in
+help ) option=h ;;
+version ) option=v ;;
+	* ) echo "Unknown option ${OPTARG}" ;;
+esac
+fi
 case $option in
-v ) echo "$(basename $0) ${VERSION}" ;;
+h ) print_usage ;;
+v ) echo "${SCRIPT_NAME} ${VERSION}" ;;
+? ) echo "Unknown option" ;;
 esac
 done
 
 shift $((OPTIND - 1))
 }
 
+print_usage() {
+echo "Usage: ${SCRIPT_NAME} [option...]"
+echo "Options :"
+echo "-v --version : Version nummer"
+echo "-h --help : Print usage"
+}
+
 main_function() {
+SCRIPT_NAME="$(basename $0)"
 goto_script_home
 parse_command_line "$@"
 }
