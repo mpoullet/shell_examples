@@ -1,0 +1,5 @@
+Sample shell scripts:
+
+shell_sample_1.sh: minimal script with command line parameters
+shell_sample_2.sh: add a debug system, triggered with _DEBUG
+shell_sample_3.sh: redirect error messages to stderr
