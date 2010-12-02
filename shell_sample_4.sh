@@ -13,6 +13,7 @@ cd ${SCRIPT_HOME}
 }
 
 parse_command_line() {
+_DP "$@"
 while getopts ":hv-:" option ; do
 	if [ "${option}" = "-" ]; then
 		case ${OPTARG} in
